@@ -22,4 +22,55 @@ public class OrderItem implements Serializable {
     private Double totalValue;
  //TODO constructors/getter/setters
 
+
+    public OrderItem() {
+    }
+
+    public OrderItem(Long id, Order orderId, Item itemId, Double quantity, Double totalValue) {
+        this.id = id;
+        this.orderId = orderId;
+        this.itemId = itemId;
+        this.quantity = quantity;
+        this.totalValue = totalValue;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Order getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(Order orderId) {
+        this.orderId = orderId;
+    }
+
+    public Item getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(Item itemId) {
+        this.itemId = itemId;
+    }
+
+    public Double getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Double quantity) {
+        this.quantity = quantity;
+    }
+
+    public Double getTotalValue() {
+        return totalValue;
+    }
+
+    public void setTotalValue(Double totalValue) {
+        this.totalValue = totalValue;
+    }
 }
