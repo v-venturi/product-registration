@@ -30,6 +30,9 @@ public class Order implements Serializable {
         this.totalValue = totalValue;
     }
 
+    public Order() {
+    }
+
     public Long getId() {
         return id;
     }

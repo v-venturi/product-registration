@@ -26,6 +26,9 @@ public class Item implements Serializable {
         this.type = type;
     }
 
+    public Item() {
+    }
+
     public Long getId() {
         return id;
     }

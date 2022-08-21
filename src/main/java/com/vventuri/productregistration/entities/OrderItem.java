@@ -20,6 +20,6 @@ public class OrderItem implements Serializable {
     private Item itemId;
     private Double quantity;
     private Double totalValue;
-
+ //TODO constructors/getter/setters
 
 }
