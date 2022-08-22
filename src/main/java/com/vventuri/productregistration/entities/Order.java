@@ -4,8 +4,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.io.Serial;
-import java.io.Serializable;
 import java.sql.Date;
 import java.util.UUID;
 

@@ -3,8 +3,6 @@ package com.vventuri.productregistration.entities;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.io.Serial;
-import java.io.Serializable;
 import java.util.UUID;
 
 @Entity

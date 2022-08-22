@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
@@ -31,6 +32,7 @@ public class ItemService {
 
     public Item createItem(Item item) {
         return repository.save(item);
+
     }
 
     public void delete(UUID id) {

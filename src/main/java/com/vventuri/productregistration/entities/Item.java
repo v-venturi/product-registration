@@ -1,10 +1,9 @@
 package com.vventuri.productregistration.entities;
 
+import com.vventuri.productregistration.entities.enums.Type;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.io.Serial;
-import java.io.Serializable;
 import java.util.UUID;
 
 @Entity
@@ -19,9 +18,10 @@ public class Item {
     private UUID id;
     private String description;
     private Double value;
-    private char type;
+    @Enumerated(EnumType.STRING)
+    private Type type;
 
-    public Item(UUID id, String description, Double value, char type) {
+    public Item(UUID id, String description, Double value, Type type) {
         this.id = id;
         this.description = description;
         this.value = value;
@@ -55,11 +55,11 @@ public class Item {
         this.value = value;
     }
 
-    public char getType() {
+    public Type getType() {
         return type;
     }
 
-    public void setType(char type) {
+    public void setType(Type type) {
         this.type = type;
     }
 }
