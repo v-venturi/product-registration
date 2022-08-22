@@ -26,7 +26,7 @@ public class ItemController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Item> getById(@PathVariable UUID id) {
-        Item item = itemService.findById(id);
+        Item item = itemService.findItemById(id);
         return ResponseEntity.ok().body(item);
     }
 

@@ -25,7 +25,7 @@ public class ItemService {
         return repository.findAll();
     }
 
-    public Item findById(UUID id) {
+    public Item findItemById(UUID id) {
         Optional<Item> obj = repository.findById(id);
         return obj.orElseThrow(() -> new ResourceNotFoundException(id));
     }

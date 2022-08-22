@@ -1,6 +1,7 @@
 package com.vventuri.productregistration.controllers;
 
 
+import com.vventuri.productregistration.entities.Item;
 import com.vventuri.productregistration.entities.OrderItem;
 import com.vventuri.productregistration.services.OrderItemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,11 +31,12 @@ public class OrderItemController {
         return ResponseEntity.ok().body(order);
     }
 
-    @PostMapping
-    public ResponseEntity<OrderItem> createOrderItem(@RequestBody OrderItem oi) {
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+    @PostMapping("/{id}/items")
+    public ResponseEntity<OrderItem> createOrderItem(@RequestBody OrderItem oi, @PathVariable UUID id) {
+        oi = orderItemService.createOrderItem(oi, id);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("id")
                                              .buildAndExpand(oi.getId()).toUri();
-        return ResponseEntity.created(uri).body(orderItemService.createOrderItem(oi));
+        return ResponseEntity.created(uri).body(oi);
 
     }
 

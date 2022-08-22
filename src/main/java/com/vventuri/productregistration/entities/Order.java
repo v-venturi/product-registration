@@ -59,7 +59,7 @@ public class Order {
     }
 
     public Double getPercentageDiscount() {
-        return percentageDiscount;
+        return percentageDiscount/100;
     }
 
     public void setPercentageDiscount(Double percentageDiscount) {

@@ -21,14 +21,18 @@ public class Item {
     @Enumerated(EnumType.STRING)
     private Type type;
 
+    public Item() {
+    }
+
+    public Item(String id){
+        this.id = UUID.fromString(id);
+    }
+
     public Item(UUID id, String description, Double value, Type type) {
         this.id = id;
         this.description = description;
         this.value = value;
         this.type = type;
-    }
-
-    public Item() {
     }
 
     public UUID getId() {

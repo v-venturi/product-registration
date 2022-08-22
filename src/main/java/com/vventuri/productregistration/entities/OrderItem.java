@@ -1,5 +1,6 @@
 package com.vventuri.productregistration.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -16,11 +17,9 @@ public class OrderItem {
     private UUID id;
     @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "order_id")
-    private Order orderId;
-
-    @ManyToOne(cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "item_id")
-    private Item itemId;
+    @JsonIgnore
+    private Order order;
+    private UUID itemId;
     private Double quantity;
     private Double totalValue;
 
@@ -28,9 +27,9 @@ public class OrderItem {
     public OrderItem() {
     }
 
-    public OrderItem(UUID id, Order orderId, Item itemId, Double quantity, Double totalValue) {
+    public OrderItem(UUID id, Order order, UUID itemId, Double quantity, Double totalValue) {
         this.id = id;
-        this.orderId = orderId;
+        this.order = order;
         this.itemId = itemId;
         this.quantity = quantity;
         this.totalValue = totalValue;
@@ -44,19 +43,19 @@ public class OrderItem {
         this.id = id;
     }
 
-    public Order getOrderId() {
-        return orderId;
+    public Order getOrder() {
+        return order;
     }
 
-    public void setOrderId(Order orderId) {
-        this.orderId = orderId;
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
-    public Item getItemId() {
+    public UUID getItemId() {
         return itemId;
     }
 
-    public void setItemId(Item itemId) {
+    public void setItemId(UUID itemId) {
         this.itemId = itemId;
     }
 

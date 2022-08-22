@@ -1,6 +1,9 @@
 package com.vventuri.productregistration.services;
 
+import com.vventuri.productregistration.entities.Item;
+import com.vventuri.productregistration.entities.Order;
 import com.vventuri.productregistration.entities.OrderItem;
+import com.vventuri.productregistration.repositories.ItemRepository;
 import com.vventuri.productregistration.repositories.OrderItemRepository;
 import com.vventuri.productregistration.services.exceptions.DataBaseException;
 import com.vventuri.productregistration.services.exceptions.ResourceNotFoundException;
@@ -19,6 +22,12 @@ public class OrderItemService {
 
     @Autowired
     private OrderItemRepository repository;
+    @Autowired
+    private ItemRepository itemRepository;
+    @Autowired
+    private ItemService itemService;
+    @Autowired
+    private OrderService orderService;
 
     public List<OrderItem> findAll() {
         return repository.findAll();
@@ -29,7 +38,12 @@ public class OrderItemService {
         return obj.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
-    public OrderItem createOrderItem(OrderItem oi) {
+    public OrderItem createOrderItem(OrderItem oi, UUID id) {
+        Optional<Order> order = Optional.ofNullable(orderService.findById(id));
+        Optional<Item> obj = Optional.ofNullable(itemService.findItemById(oi.getItemId()));
+        oi.setOrder(order.get());
+        oi.setTotalValue(oi.getQuantity() * obj.get().getValue());
+        oi.setItemId(obj.get().getId());
         return repository.save(oi);
     }
 
