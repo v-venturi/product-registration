@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class ItemService {
@@ -23,7 +24,7 @@ public class ItemService {
         return repository.findAll();
     }
 
-    public Item findById(Long id) {
+    public Item findById(UUID id) {
         Optional<Item> obj = repository.findById(id);
         return obj.orElseThrow(() -> new ResourceNotFoundException(id));
     }
@@ -32,7 +33,7 @@ public class ItemService {
         return repository.save(item);
     }
 
-    public void delete(Long id) {
+    public void delete(UUID id) {
         try {
             repository.deleteById(id);
         } catch (EmptyResultDataAccessException e) {
@@ -42,7 +43,7 @@ public class ItemService {
         }
     }
 
-    public Item update(Long id, Item obj) {
+    public Item update(UUID id, Item obj) {
         try {
             Item entity = repository.getOne(id);
             updateData(entity, obj);

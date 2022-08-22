@@ -1,25 +1,27 @@
 package com.vventuri.productregistration.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.UUID;
 
 @Entity
-public class Item implements Serializable {
-    @Serial
-    private final static long serialVersionUID = 1L;
+@Table(name = "tb_item")
+public class Item {
+
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GenericGenerator(name = "UUIDGenerator", strategy = "uuid2")
+    @GeneratedValue(generator = "UUIDGenerator")
+    @Column(name = "id", updatable = false, nullable = false)
+    private UUID id;
     private String description;
     private Double value;
     private char type;
 
-    public Item(Long id, String description, Double value, char type) {
+    public Item(UUID id, String description, Double value, char type) {
         this.id = id;
         this.description = description;
         this.value = value;
@@ -29,11 +31,11 @@ public class Item implements Serializable {
     public Item() {
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

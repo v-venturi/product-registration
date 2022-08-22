@@ -10,6 +10,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("api/items")
@@ -24,7 +25,7 @@ public class ItemController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Item> getById(@PathVariable Long id) {
+    public ResponseEntity<Item> getById(@PathVariable UUID id) {
         Item item = itemService.findById(id);
         return ResponseEntity.ok().body(item);
     }
@@ -38,13 +39,13 @@ public class ItemController {
     }
 
     @PutMapping
-    public ResponseEntity<Item> updateItem(@PathVariable Long id, @RequestBody Item item){
+    public ResponseEntity<Item> updateItem(@PathVariable UUID id, @RequestBody Item item){
         return ResponseEntity.ok().body(itemService.update(id, item));
     }
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteItem(@PathVariable Long id){
+    public ResponseEntity<Void> deleteItem(@PathVariable UUID id){
         itemService.delete(id);
         return ResponseEntity.noContent().build();
     }

@@ -1,18 +1,23 @@
 package com.vventuri.productregistration.entities;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.UUID;
 
 @Entity
-public class OrderItem implements Serializable {
-    @Serial
-    private final static long serialVersionUID = 1L;
+@Table(name = "tb_order_item")
+public class OrderItem {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-
+    @GenericGenerator(name = "UUIDGenerator", strategy = "uuid2")
+    @GeneratedValue(generator = "UUIDGenerator")
+    @Column(name = "id", updatable = false, nullable = false)
+    private UUID id;
+    @ManyToOne(cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "order_id")
     private Order orderId;
 
     @ManyToOne(cascade = CascadeType.REFRESH)
@@ -20,13 +25,12 @@ public class OrderItem implements Serializable {
     private Item itemId;
     private Double quantity;
     private Double totalValue;
- //TODO constructors/getter/setters
 
 
     public OrderItem() {
     }
 
-    public OrderItem(Long id, Order orderId, Item itemId, Double quantity, Double totalValue) {
+    public OrderItem(UUID id, Order orderId, Item itemId, Double quantity, Double totalValue) {
         this.id = id;
         this.orderId = orderId;
         this.itemId = itemId;
@@ -34,11 +38,11 @@ public class OrderItem implements Serializable {
         this.totalValue = totalValue;
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

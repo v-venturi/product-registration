@@ -1,29 +1,31 @@
 package com.vventuri.productregistration.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.UUID;
 
 
 @Entity
 @Table(name = "tb_order")
-public class Order implements Serializable {
-    @Serial
-    private final static long serialVersionUID = 1L;
+public class Order {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GenericGenerator(name = "UUIDGenerator", strategy = "uuid2")
+    @GeneratedValue(generator = "UUIDGenerator")
+    @Column(name = "id", updatable = false, nullable = false)
+    private UUID id;
     private Integer number;
     @JsonFormat(pattern = "dd-MM-yyyy")
     private Date date;
     private Double percentageDiscount;
     private Double totalValue;
 
-    public Order(Long id, Integer number, Date date, Double percentageDiscount, Double totalValue) {
+    public Order(UUID id, Integer number, Date date, Double percentageDiscount, Double totalValue) {
         this.id = id;
         this.number = number;
         this.date = date;
@@ -34,11 +36,11 @@ public class Order implements Serializable {
     public Order() {
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

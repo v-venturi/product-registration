@@ -10,6 +10,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("api/orders")
@@ -24,7 +25,7 @@ public class OrderController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Order> getById(@PathVariable Long id) {
+    public ResponseEntity<Order> getById(@PathVariable UUID id) {
         Order order = orderService.findById(id);
         return ResponseEntity.ok().body(order);
     }
@@ -38,13 +39,13 @@ public class OrderController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Order> updateOrder(@PathVariable Long id, @RequestBody Order order){
+    public ResponseEntity<Order> updateOrder(@PathVariable UUID id, @RequestBody Order order){
         return ResponseEntity.ok().body(orderService.update(id, order));
     }
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteOrder(@PathVariable Long id){
+    public ResponseEntity<Void> deleteOrder(@PathVariable UUID id){
         orderService.delete(id);
         return ResponseEntity.noContent().build();
     }
