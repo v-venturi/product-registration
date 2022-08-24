@@ -1,7 +1,7 @@
 ## Product Registration
 
 
-### Technologies used
+### Used technologies
 
 This project was developed with:
 
