@@ -49,6 +49,11 @@ public class OrderController {
         orderService.delete(id);
         return ResponseEntity.noContent().build();
     }
+    @PostMapping("/{id}/close")
+    public ResponseEntity<Order> close(@PathVariable UUID id, @RequestBody Order order){
+        orderService.sellClose(id, order);
+        return ResponseEntity.ok().body(order);
+    }
 
 
 

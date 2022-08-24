@@ -1,7 +1,6 @@
 package com.vventuri.productregistration.controllers;
 
 
-import com.vventuri.productregistration.entities.Item;
 import com.vventuri.productregistration.entities.OrderItem;
 import com.vventuri.productregistration.services.OrderItemService;
 import org.springframework.beans.factory.annotation.Autowired;

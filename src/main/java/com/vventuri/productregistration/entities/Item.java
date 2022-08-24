@@ -24,10 +24,6 @@ public class Item {
     public Item() {
     }
 
-    public Item(String id){
-        this.id = UUID.fromString(id);
-    }
-
     public Item(UUID id, String description, Double value, Type type) {
         this.id = id;
         this.description = description;
